@@ -55,3 +55,9 @@ Power BI Dashboard
 | fct_category_performance | Marts | Table | Q1 — Category performance |
 | fct_payment_analysis | Marts | Table | Q2 — Payment patterns |
 | fct_bad_reviews_by_category | Marts | Table | Q3 — Bad review detection |
+
+## Pipeline Lineage
+![Pipeline Lineage](screenshots/pipeline_lineage.png)
+
+## Dashboard
+![Power BI Dashboard](screenshots/dashboard.png)
