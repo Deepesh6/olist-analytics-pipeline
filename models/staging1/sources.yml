@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: olist_raw
+    schema: olist_raw               # actual DB schema
+    tables:
+      - name: orders
+        description: All customer orders with status and timestamps.
+      - name: order_items
+        description: Individual items within each order including price and freight.
+      - name : order_payments
+        description: Payment details for each order including payment type and installments.
+      - name : order_reviews
+        description: Customer reviews and scores for delivered orders.
+      - name : products
+        description: Product catalog with category and dimension details
+      - name : product_category_translation
+        description: Translates Portuguese product category names to English.
