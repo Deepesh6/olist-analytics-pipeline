@@ -8,23 +8,23 @@ Production-grade ELT pipeline analyzing 100,000+ real Brazilian e-commerce order
 3. **Bad Review Detection** — Which product categories have highest percentage of bad reviews (score ≤ 2)?
 
 ## Architecture
-Raw Data (PostgreSQL - olist_raw schema)
-│
-▼
-DBT Staging Layer (5 views)
-stg_orders | stg_order_items | stg_order_payments | stg_order_reviews | stg_products
-│
-▼
-DBT Marts Layer (3 tables)
-fct_category_performance | fct_payment_analysis | fct_bad_reviews_by_category
-│
-▼
+## Architecture
+Raw Data (CSV)
+      │
+      ▼ Python ingestion
+AWS RDS PostgreSQL (olist_raw schema)
+      │
+      ▼ DBT transformation
+AWS RDS PostgreSQL (olist_dev schema)
+      │
+      ▼
 Power BI Dashboard
 
 
 ## Tech Stack
 - **DBT Core 1.11** — data transformation, testing, documentation
-- **PostgreSQL 16** — data warehouse
+- **AWS RDS PostgreSQL** — cloud data warehouse (ap-south-1)
+- **Apache Airflow** — pipeline orchestration
 - **Power BI** — business intelligence dashboard
 - **Python** — data ingestion scripts
 
