@@ -8,17 +8,40 @@ Production-grade ELT pipeline analyzing 100,000+ real Brazilian e-commerce order
 3. **Bad Review Detection** — Which product categories have highest percentage of bad reviews (score ≤ 2)?
 
 ## Architecture
-## Architecture
-Raw Data (CSV)
-      │
-      ▼ Python ingestion
-AWS RDS PostgreSQL (olist_raw schema)
-      │
-      ▼ DBT transformation
-AWS RDS PostgreSQL (olist_dev schema)
-      │
-      ▼
+
+Raw CSVs (Kaggle)
+│
+▼ Python ingestion
+AWS RDS PostgreSQL - olist_raw schema
+│
+▼ DBT transformation
+AWS RDS PostgreSQL - olist_dev schema
+│
+├── Staging Layer (5 views)
+│   stg_orders, stg_order_items, stg_order_payments
+│   stg_order_reviews, stg_products
+│
+├── Dimension Layer (3 tables)
+│   dim_products, dim_customers, dim_date
+│
+└── Marts Layer (4 tables)
+fct_orders (central fact table)
+fct_category_performance
+fct_payment_analysis
+fct_bad_reviews_by_category
+│
+▼
 Power BI Dashboard
+
+## Star Schema Design
+
+                dim_date
+                   │
+dim_customers → fct_orders ← dim_products
+
+- **Fact table** — stores keys and metrics (price, freight_value)
+- **Dimension tables** — stores descriptive context (category, city, date attributes)
+- Any business question answered by joining fact + relevant dimensions
 
 
 ## Tech Stack
