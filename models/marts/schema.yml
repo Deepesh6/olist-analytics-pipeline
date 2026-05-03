@@ -5,7 +5,7 @@ models:
     description: "This table will provide the output showing worst product_category based on their rating percentage"
 
     columns:
-      - name: category_name
+      - name: product_category
         tests:
           - not_null
           - unique
@@ -17,7 +17,7 @@ models:
     description: "This table depicts which prodcut category did the best in terms of total orders and rating."
 
     columns:
-      - name: category_name
+      - name: product_category
         tests:
           - not_null
           - unique

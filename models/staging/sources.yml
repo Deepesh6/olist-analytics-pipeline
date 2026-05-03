@@ -16,3 +16,5 @@ sources:
         description: Product catalog with category and dimension details
       - name : product_category_translation
         description: Translates Portuguese product category names to English.
+      - name: customers
+        description: Raw customer data including location details.

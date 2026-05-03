@@ -1,35 +1,29 @@
 {{ config(materialized='table') }}
 
-with order_items as (
-    select * from {{ ref('stg_order_items') }}
-),
-
-order_reviews as (
-    Select * from {{ ref('stg_order_reviews')}}
+with fct_orders as (
+    Select * from {{ref('fct_orders')}}
 ),
 
 products as (
-    Select * from {{ ref('stg_products') }}
+    Select * from {{ref('dim_products')}}
 ),
 
-translation as (
-    Select * from {{ source('olist_raw', 'product_category_translation') }}
-)
+order_reviews as (
+    Select * from {{ref('stg_order_reviews')}}
+),
 
-, final as (
-    Select coalesce(t.product_category_name_english, p.product_category_name, 'unknown') as category_name, 
-    round(avg(review_score), 2) as avg_rating,
-    count(distinct i.order_id) as order_volume
-    from order_items i
-    inner join order_reviews r
-    on i.order_id = r.order_id
+final as (
+    Select p.product_category,
+    round(avg(r.review_score), 2) as avg_rating,
+    count(distinct o.order_id) as order_volume
+    from fct_orders o
     inner join products p
-    on i.product_id = p.product_id
-    left join translation t
-    on p.product_category_name = t.product_category_name
+    on o.product_id = p.product_id
+    inner join order_reviews r
+    on r.order_id = o.order_id
 
-    group by coalesce(t.product_category_name_english, p.product_category_name, 'unknown')
-    
+    group by product_category
 )
+
 Select * from final
 order by order_volume desc, avg_rating desc
