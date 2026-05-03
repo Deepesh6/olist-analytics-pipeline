@@ -9,8 +9,6 @@ Production-grade ELT pipeline analyzing 100,000+ real Brazilian e-commerce order
 
 ## Architecture
 
-## Architecture
-
 ```
 Raw CSVs (Kaggle)
       │
