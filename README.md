@@ -9,29 +9,33 @@ Production-grade ELT pipeline analyzing 100,000+ real Brazilian e-commerce order
 
 ## Architecture
 
+## Architecture
+
+```
 Raw CSVs (Kaggle)
-│
-▼ Python ingestion
+      │
+      ▼ Python ingestion
 AWS RDS PostgreSQL - olist_raw schema
-│
-▼ DBT transformation
+      │
+      ▼ DBT transformation
 AWS RDS PostgreSQL - olist_dev schema
-│
-├── Staging Layer (5 views)
-│   stg_orders, stg_order_items, stg_order_payments
-│   stg_order_reviews, stg_products
-│
-├── Dimension Layer (3 tables)
-│   dim_products, dim_customers, dim_date
-│
-└── Marts Layer (4 tables)
-fct_orders (central fact table)
-fct_category_performance
-fct_payment_analysis
-fct_bad_reviews_by_category
-│
-▼
+      │
+      ├── Staging Layer (5 views)
+      │   stg_orders, stg_order_items, stg_order_payments
+      │   stg_order_reviews, stg_products
+      │
+      ├── Dimension Layer (3 tables)
+      │   dim_products, dim_customers, dim_date
+      │
+      └── Marts Layer (4 tables)
+          fct_orders (central fact table)
+          fct_category_performance
+          fct_payment_analysis
+          fct_bad_reviews_by_category
+      │
+      ▼
 Power BI Dashboard
+```
 
 ## Star Schema Design
 
