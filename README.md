@@ -7,6 +7,9 @@ Production-grade ELT pipeline analyzing 100,000+ real Brazilian e-commerce order
 2. **Payment Analysis** — What is the most used payment method and installment pattern?
 3. **Bad Review Detection** — Which product categories have highest percentage of bad reviews (score ≤ 2)?
 
+## Dashboard
+📊 [Olist Customer Satisfaction Dashboard](https://public.tableau.com/app/profile/deepesh.gorai/viz/OlistCustomerSatisfactionDashboard/OlistCustomerSatisfactionAnalysisWhatdrivesratingsacrosscategoriesandstates)
+
 ## Architecture
 
 ```
